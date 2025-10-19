@@ -1,0 +1,38 @@
+{
+  "name": "verstep-core",
+  "version": "0.9.8",
+  "description": "A lightweight, framework-agnostic core library for incrementing and managing software versions using Semantic Versioning (SemVer)",
+  "keywords": [
+    "semver",
+    "version"
+  ],
+  "homepage": "https://github.com/IrvRodFlo9/verstep-core#readme",
+  "bugs": {
+    "url": "https://github.com/IrvRodFlo9/verstep-core/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IrvRodFlo9/verstep-core.git"
+  },
+  "license": "MIT",
+  "author": "Irving Rodriguez",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsup src/* --format esm,cjs --watch --out-dir development",
+    "build": "tsup src/index.ts --format esm,cjs --dts --out-dir dist --minify",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
+  "bin": {
+    "verstep": "./dist/index.js"
+  }
+}
