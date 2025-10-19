@@ -1,17 +1,27 @@
 export interface VerstepConfig {
+  version: string;
+  versionFormat: VersionFormats;
+  path: string;
   consolePath: string;
   scrapingPath: string;
-  gitProtocol: {
-    add: boolean;
-    commit: boolean;
-    push: boolean;
-    pull: boolean;
-    tag: boolean;
-    remoteName: string;
-    branchName: string;
-  };
+  gitConfig: GitConfig;
   lastUpdated: {
     date: string;
     madeBy: string;
   };
+}
+
+export enum VersionFormats {
+  SINGLE = 'X.X.X',
+  VERSTEP = 'vX.X.X',
+}
+
+export interface GitConfig {
+  push: boolean;
+  pull: boolean;
+  remoteName: string;
+  developBranch: string;
+  mainBranch: string;
+  forcePush: boolean;
+  forcePull: boolean;
 }

@@ -1,38 +1,42 @@
-#!/usr/bin/env node
-
-import { createVerstepConfig } from './config-handler/setup-config';
-import { rollback, executeProtocol } from './features';
-import { CliOperations, UpgradeType } from './interfaces/cli.interface';
+import { UpgradeType, CliOperations } from './interfaces';
+import { Verstep } from './verstep';
 
 function main() {
   const args = process.argv.slice(2);
+  const verstep: Verstep = new Verstep();
 
   if (args.length === 0) {
-    console.log('Use: verstep <up|rollback|sync|reset>');
-    process.exit(1);
+    console.log('Use: verstep <up|rollback|sync|reset|version>');
+    process.exit(0);
   }
 
   const operation: CliOperations = args[0] as CliOperations;
 
+  if (operation === CliOperations.version) {
+    verstep.version();
+    process.exit(0);
+  }
+
   if (operation === CliOperations.reset) {
-    createVerstepConfig();
-    process.exit(1);
+    verstep.reset();
+    process.exit(0);
   }
 
   if (operation === CliOperations.rollback) {
-    rollback();
-    process.exit(1);
+    verstep.rollback();
+    process.exit(0);
   }
 
-  if (args.length === 1 && operation === CliOperations.update) {
+  if (args.length === 1 && operation === CliOperations.upgrade) {
     console.log('Use: --patch (default) | --minor | --major');
-    process.exit(1);
+    process.exit(0);
   }
 
-  if (operation === CliOperations.update) {
+  if (operation === CliOperations.upgrade) {
     const type: UpgradeType = args[1] as UpgradeType;
-    //executeProtocol(type);
-    process.exit(1);
+    console.log(type);
+    verstep.versionBump(type);
+    process.exit(0);
   }
 }
 

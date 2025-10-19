@@ -1,15 +1,20 @@
 {
-  "gitProtocol": {
-    "add": true,
-    "commit": true,
+  "version": "v0.0.0",
+  "versionFormat": "vX.X.X",
+  "path": "",
+  "consolePath": "",
+  "scrapingPath": "index.html",
+  "gitConfig": {
     "push": true,
-    "tag": true,
     "pull": true,
     "remoteName": "origin",
-    "branchName": "main"
+    "developBranch": "main",
+    "mainBranch": "main",
+    "forcePush": false,
+    "forcePull": false
   },
   "lastUpdated": {
-    "madeBy": "Irving Rodriguez",
-    "date": "2025-08-10T01:47:24.153Z"
+    "madeBy": "",
+    "date": "2025-10-19T07:17:36.095Z"
   }
 }

@@ -1,8 +1,11 @@
 import * as fs from 'fs';
+import * as path from 'path';
 
-export function writeFile(route: string, content: string): boolean {
+export function writeFile(relativePath: string, content: string): boolean {
+  const fullPath = path.resolve(process.cwd(), relativePath);
+
   try {
-    fs.writeFileSync(route, content, { encoding: 'utf8' });
+    fs.writeFileSync(fullPath, content, { encoding: 'utf8' });
     return true;
   } catch (error) {
     console.error('Error trying to write file:', error);
@@ -10,7 +13,8 @@ export function writeFile(route: string, content: string): boolean {
   }
 }
 
-export function readFile(filePath: string): string[] {
-  const content = fs.readFileSync(filePath, 'utf8');
+export function readFile(relativePath: string): string[] {
+  const fullPath = path.resolve(process.cwd(), relativePath);
+  const content = fs.readFileSync(fullPath, 'utf8');
   return content.split(/\r?\n/);
 }

@@ -1,5 +1,3 @@
-export const VERSION_REGEX = /v\d+\.\d+\.\d+/;
-
 export function findLineByRegex(
   lines: string[],
   regex: RegExp,

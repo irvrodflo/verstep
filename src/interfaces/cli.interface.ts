@@ -1,13 +1,8 @@
 export enum CliOperations {
-  update = 'up',
+  upgrade = 'up',
   sync = 'sync',
   reset = 'reset',
   rollback = 'rollback',
   init = 'init',
-}
-
-export enum UpgradeType {
-  PATCH = 'patch',
-  MINOR = 'minor',
-  MAJOR = 'major',
+  version = 'version',
 }

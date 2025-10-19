@@ -1,4 +1,4 @@
-export * from './excecuter';
+export * from './excecuters';
 export * from './file-handler';
 export * from './regex';
-export * from './npm-handler';
+export * from './npm';
