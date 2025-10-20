@@ -6,13 +6,13 @@
     "semver",
     "version"
   ],
-  "homepage": "https://github.com/IrvRodFlo9/verstep#readme",
+  "homepage": "https://github.com/irvrodflo/verstep#readme",
   "bugs": {
-    "url": "https://github.com/IrvRodFlo9/verstep/issues"
+    "url": "https://github.com/irvrodflo/verstep/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IrvRodFlo9/verstep.git"
+    "url": "git+https://github.com/irvrodflo/verstep.git"
   },
   "license": "MIT",
   "author": "Irving Rodriguez",
