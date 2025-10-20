@@ -40,7 +40,7 @@ export class ConfigHandler {
       ...currentConfig,
       ...updates,
       lastUpdated: {
-        madeBy: updates.lastUpdated?.madeBy || currentConfig.lastUpdated.madeBy,
+        madeBy: madeBy || currentConfig.lastUpdated.madeBy,
         date: new Date().toISOString(),
       },
     };

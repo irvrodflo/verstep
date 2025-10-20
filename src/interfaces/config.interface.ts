@@ -21,7 +21,7 @@ export interface GitConfig {
   pull: boolean;
   remoteName: string;
   developBranch: string;
-  mainBranch: string;
+  productionBranch: string;
   forcePush: boolean;
   forcePull: boolean;
 }

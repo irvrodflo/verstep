@@ -9,7 +9,11 @@ export class GitHandler {
     this.config = config;
   }
 
-  public completeFlow(commit: string, environment: 'dev' | 'main'): void {
+  public completeFlow(
+    commit: string,
+    withTag: boolean,
+    environment: 'dev' | 'prod'
+  ): void {
     const { pull, push } = this.config!;
 
     if (pull) {
@@ -19,6 +23,10 @@ export class GitHandler {
     this.add();
     this.commit(commit);
 
+    if (withTag) {
+      this.tag(commit);
+    }
+
     if (push) {
       this.push(environment);
     }
@@ -26,9 +34,9 @@ export class GitHandler {
     console.log('Git protocol made successfully');
   }
 
-  public pull(environment: 'dev' | 'main'): void {
-    const { developBranch, mainBranch, remoteName } = this.config!;
-    const branch: string = environment === 'dev' ? developBranch : mainBranch;
+  public pull(environment: 'dev' | 'prod'): void {
+    const { developBranch, productionBranch, remoteName } = this.config!;
+    const branch: string = environment === 'dev' ? developBranch : productionBranch;
 
     this.gitExcecute(`pull ${remoteName} ${branch}`);
   }
@@ -42,17 +50,21 @@ export class GitHandler {
     this.gitExcecute(`commit -m "${message}"`);
   }
 
-  public push(environment: 'dev' | 'main'): void {
-    const { remoteName, developBranch, mainBranch, forcePush } = this.config!;
+  public tag(mark: string): void {
+    this.gitExcecute(`tag ${mark}`);
+  }
+
+  public push(environment: 'dev' | 'prod'): void {
+    const { remoteName, developBranch, productionBranch, forcePush } = this.config!;
 
     const forceFlag: string = forcePush ? '--force-with-lease' : '';
-    const branch: string = environment === 'dev' ? developBranch : mainBranch;
+    const branch: string = environment === 'dev' ? developBranch : productionBranch;
     const command: string = `push ${remoteName} ${branch} ${forceFlag}`;
 
     this.gitExcecute(command);
   }
 
-  public rollback(environment: 'dev' | 'main', push: boolean = false) {
+  public rollback(environment: 'dev' | 'prod', push: boolean = false) {
     this.gitExcecute('reset --hard HEAD~1');
 
     if (!push) return;

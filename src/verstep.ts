@@ -25,7 +25,7 @@ export class Verstep {
 
     this.configHandler.updateVerstepConfig({ version: newVersion }, gitUser);
     npmUpgradeVersion(newVersion);
-    this.gitHandler.completeFlow(newVersion, 'dev');
+    this.gitHandler.completeFlow(newVersion, true, 'dev');
   }
 
   public rollback(): void {

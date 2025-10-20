@@ -1,7 +1,7 @@
 {
   "name": "verstep",
   "version": "0.5.0",
-  "description": "A lightweight, framework-agnostic core library for incrementing and managing software versions using Semantic Versioning (SemVer)",
+  "description": "A lightweight, framework-agnostic CLI library for incrementing and managing software versions using Semantic Versioning (SemVer)",
   "keywords": [
     "semver",
     "version"
@@ -26,7 +26,7 @@
     "start": "tsup --watch",
     "build": "tsup",
     "prepare": "npm run build",
-    "postinstall": "node dist/setup.cjs"
+    "postinstall": "if [ -f dist/setup.cjs ]; then node dist/setup.cjs; fi"
   },
   "devDependencies": {
     "@types/node": "^24.2.1",
