@@ -1,4 +1,4 @@
-import { UpgradeType, VerstepConfig } from './interfaces';
+import { Envronments, UpgradeType, VerstepConfig } from './interfaces';
 import { ConfigHandler } from './handlers/config-handler';
 import { GitHandler } from './handlers/git-handler';
 import { VersionHandler } from './handlers/version-handler';
@@ -25,10 +25,10 @@ export class Verstep {
 
     this.configHandler.updateVerstepConfig({ version: newVersion }, gitUser);
     npmUpgradeVersion(newVersion);
-    this.gitHandler.completeFlow(newVersion, true, 'dev');
+    this.gitHandler.completeFlow(newVersion, true, Envronments.dev);
   }
 
-  public rollback(): void {
+  public rollback(environment: Envronments): void {
     const lastCommit = this.gitHandler.readLastCommit();
     const wasVersionCommit = this.versionHandler.validateVersionFormat(lastCommit);
 
@@ -39,7 +39,7 @@ export class Verstep {
       return;
     }
 
-    this.gitHandler.rollback('dev');
+    this.gitHandler.rollback(Envronments.dev);
 
     console.log('Rollback done sucessfully');
   }

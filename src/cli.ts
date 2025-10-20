@@ -1,4 +1,4 @@
-import { UpgradeType, CliOperations } from './interfaces';
+import { UpgradeType, CliOperations, Envronments } from './interfaces';
 import { Verstep } from './verstep';
 
 function main() {
@@ -23,7 +23,8 @@ function main() {
   }
 
   if (operation === CliOperations.rollback) {
-    verstep.rollback();
+    const environment: Envronments = (args[1] || Envronments.dev) as Envronments;
+    verstep.rollback(environment);
     process.exit(0);
   }
 

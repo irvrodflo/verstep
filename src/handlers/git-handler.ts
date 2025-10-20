@@ -1,4 +1,4 @@
-import { GitConfig } from '../interfaces';
+import { Envronments, GitConfig } from '../interfaces';
 
 import { executeSync } from '../utils';
 
@@ -9,11 +9,7 @@ export class GitHandler {
     this.config = config;
   }
 
-  public completeFlow(
-    commit: string,
-    withTag: boolean,
-    environment: 'dev' | 'prod'
-  ): void {
+  public completeFlow(commit: string, withTag: boolean, environment: Envronments): void {
     const { pull, push } = this.config!;
 
     if (pull) {
@@ -34,9 +30,10 @@ export class GitHandler {
     console.log('Git protocol made successfully');
   }
 
-  public pull(environment: 'dev' | 'prod'): void {
+  public pull(environment: Envronments): void {
     const { developBranch, productionBranch, remoteName } = this.config!;
-    const branch: string = environment === 'dev' ? developBranch : productionBranch;
+    const branch: string =
+      environment === Envronments.dev ? developBranch : productionBranch;
 
     this.gitExcecute(`pull ${remoteName} ${branch}`);
   }
@@ -54,17 +51,18 @@ export class GitHandler {
     this.gitExcecute(`tag ${mark}`);
   }
 
-  public push(environment: 'dev' | 'prod'): void {
+  public push(environment: Envronments): void {
     const { remoteName, developBranch, productionBranch, forcePush } = this.config!;
 
     const forceFlag: string = forcePush ? '--force-with-lease' : '';
-    const branch: string = environment === 'dev' ? developBranch : productionBranch;
+    const branch: string =
+      environment === Envronments.dev ? developBranch : productionBranch;
     const command: string = `push ${remoteName} ${branch} ${forceFlag}`;
 
     this.gitExcecute(command);
   }
 
-  public rollback(environment: 'dev' | 'prod', push: boolean = false) {
+  public rollback(environment: Envronments, push: boolean = false) {
     this.gitExcecute('reset --hard HEAD~1');
 
     if (!push) return;

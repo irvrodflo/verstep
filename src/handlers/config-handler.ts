@@ -2,10 +2,10 @@ import { readFileSync, existsSync, unlinkSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 import { VerstepConfig } from '../interfaces';
-import { defaultConfig } from '../utils/default-config';
+import { DEFAULT_CONFIG } from '../utils/default-config';
 
 export class ConfigHandler {
-  private defaultConfig: VerstepConfig = defaultConfig;
+  private defaultConfig: VerstepConfig = DEFAULT_CONFIG;
 
   public readVerstepConfig(folderPath: string = process.cwd()): VerstepConfig {
     const filePath = join(folderPath, 'verstep.json');

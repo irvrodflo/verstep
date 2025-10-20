@@ -1,9 +1,7 @@
 export interface VerstepConfig {
   version: string;
   versionFormat: VersionFormats;
-  path: string;
-  consolePath: string;
-  scrapingPath: string;
+  paths: string[];
   gitConfig: GitConfig;
   lastUpdated: {
     date: string;

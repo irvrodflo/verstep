@@ -1,17 +1,15 @@
 import { VersionFormats, VerstepConfig } from '../interfaces';
 
-export const defaultConfig: VerstepConfig = {
+export const DEFAULT_CONFIG: VerstepConfig = {
   version: 'v0.0.0',
   versionFormat: VersionFormats.VERSTEP,
-  path: '',
-  consolePath: '',
-  scrapingPath: 'index.html',
+  paths: [],
   gitConfig: {
     push: true,
     pull: true,
     remoteName: 'origin',
-    developBranch: 'main',
-    mainBranch: 'main',
+    developBranch: 'develop',
+    productionBranch: 'main',
     forcePush: false,
     forcePull: false,
   },

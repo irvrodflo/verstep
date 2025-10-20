@@ -6,3 +6,8 @@ export enum CliOperations {
   init = 'init',
   version = 'version',
 }
+
+export enum Envronments {
+  dev = '--dev',
+  prod = '--prod',
+}
